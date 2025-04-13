@@ -24,6 +24,7 @@ const Auth = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { signIn, signUp, user, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -37,6 +38,11 @@ const Auth = () => {
     }
   }, [searchParams]);
 
+  // Clear error when tab changes
+  useEffect(() => {
+    setError(null);
+  }, [activeTab]);
+
   // Redirect to home if already logged in
   React.useEffect(() => {
     if (user) {
@@ -47,12 +53,14 @@ const Auth = () => {
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null);
     
     try {
       await signIn(email, password);
       navigate('/');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Sign in error:', error);
+      setError(error.message || 'Failed to sign in');
     } finally {
       setIsLoading(false);
     }
@@ -61,12 +69,14 @@ const Auth = () => {
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null);
     
     try {
       await signUp(email, password, username);
       // Don't navigate - user needs to verify email first
-    } catch (error) {
+    } catch (error: any) {
       console.error('Sign up error:', error);
+      setError(error.message || 'Failed to sign up');
     } finally {
       setIsLoading(false);
     }
@@ -74,11 +84,15 @@ const Auth = () => {
 
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
+    setError(null);
+    
     try {
+      console.log('Initiating Google sign in...');
       await signInWithGoogle();
       // No need to navigate - OAuth will handle redirection
-    } catch (error) {
+    } catch (error: any) {
       console.error('Google sign in error:', error);
+      setError(error.message || 'Failed to sign in with Google');
       setIsLoading(false);
     }
   };
@@ -94,6 +108,14 @@ const Auth = () => {
                 <TabsTrigger value="login">Login</TabsTrigger>
                 <TabsTrigger value="register">Register</TabsTrigger>
               </TabsList>
+              
+              {error && (
+                <div className="px-6 pt-6">
+                  <div className="bg-destructive/15 text-destructive text-sm p-3 rounded-md">
+                    {error}
+                  </div>
+                </div>
+              )}
               
               <TabsContent value="login">
                 <CardHeader>
