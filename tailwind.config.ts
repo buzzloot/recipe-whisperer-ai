@@ -69,7 +69,12 @@ export default {
 					softPurple: '#E5DEFF',
 					peach: '#FDE1D3',
 					softGray: '#F1F0FB',
-					neutral: '#8E9196'
+					neutral: '#8E9196',
+					// New color palette from ColorHunt
+					darkViolet: '#210F37',
+					deepPurple: '#4F1C51',
+					rose: '#A55B4B',
+					gold: '#DCA06D'
 				}
 			},
 			borderRadius: {

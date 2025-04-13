@@ -14,56 +14,56 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 252 82% 74%;
+    --primary: 270 70% 14%; /* Dark Violet: #210F37 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 5.9% 10%;
+    --secondary: 295 49% 22%; /* Deep Purple: #4F1C51 */
     --secondary-foreground: 0 0% 98%;
 
     --muted: 261 74% 95%;
     --muted-foreground: 240 3.8% 46.1%;
 
-    --accent: 20 92% 91%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 14 36% 47%; /* Rose: #A55B4B */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 252 82% 74%;
+    --ring: 270 70% 14%; /* Dark Violet: #210F37 */
 
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 270 70% 14%; /* Dark Violet: #210F37 */
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 3.9%;
+    --card: 270 70% 14%; /* Dark Violet: #210F37 */
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 3.9%;
+    --popover: 270 70% 14%; /* Dark Violet: #210F37 */
     --popover-foreground: 0 0% 98%;
 
-    --primary: 252 82% 74%;
-    --primary-foreground: 240 5.9% 10%;
+    --primary: 32 56% 65%; /* Gold: #DCA06D */
+    --primary-foreground: 270 70% 14%; /* Dark Violet: #210F37 */
 
-    --secondary: 240 3.7% 15.9%;
+    --secondary: 295 49% 22%; /* Deep Purple: #4F1C51 */
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 3.7% 15.9%;
+    --muted: 295 49% 15%; /* Darker Deep Purple */
     --muted-foreground: 240 5% 64.9%;
 
-    --accent: 20 92% 91%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 14 36% 47%; /* Rose: #A55B4B */
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 252 82% 74%;
+    --border: 295 49% 22%; /* Deep Purple: #4F1C51 */
+    --input: 295 49% 22%; /* Deep Purple: #4F1C51 */
+    --ring: 32 56% 65%; /* Gold: #DCA06D */
   }
 }
 
