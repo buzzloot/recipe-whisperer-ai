@@ -16,13 +16,15 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Separator } from '@/components/ui/separator';
+import { LucideLogIn } from 'lucide-react';
 
 const Auth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { signIn, signUp, user } = useAuth();
+  const { signIn, signUp, user, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState('login');
@@ -66,6 +68,17 @@ const Auth = () => {
     } catch (error) {
       console.error('Sign up error:', error);
     } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setIsLoading(true);
+    try {
+      await signInWithGoogle();
+      // No need to navigate - OAuth will handle redirection
+    } catch (error) {
+      console.error('Google sign in error:', error);
       setIsLoading(false);
     }
   };
@@ -114,9 +127,31 @@ const Auth = () => {
                       />
                     </div>
                   </CardContent>
-                  <CardFooter>
+                  <CardFooter className="flex flex-col space-y-4">
                     <Button type="submit" className="w-full bg-recipe-purple hover:bg-recipe-purple/90" disabled={isLoading}>
                       {isLoading ? "Signing in..." : "Sign In"}
+                    </Button>
+                    
+                    <div className="relative w-full">
+                      <div className="absolute inset-0 flex items-center">
+                        <Separator className="w-full" />
+                      </div>
+                      <div className="relative flex justify-center">
+                        <span className="bg-background px-2 text-xs text-muted-foreground">
+                          OR CONTINUE WITH
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <Button 
+                      type="button" 
+                      variant="outline" 
+                      className="w-full" 
+                      onClick={handleGoogleSignIn}
+                      disabled={isLoading}
+                    >
+                      <LucideLogIn className="mr-2 h-4 w-4" />
+                      Sign in with Google
                     </Button>
                   </CardFooter>
                 </form>
@@ -164,9 +199,31 @@ const Auth = () => {
                       />
                     </div>
                   </CardContent>
-                  <CardFooter>
+                  <CardFooter className="flex flex-col space-y-4">
                     <Button type="submit" className="w-full bg-recipe-purple hover:bg-recipe-purple/90" disabled={isLoading}>
                       {isLoading ? "Creating account..." : "Create Account"}
+                    </Button>
+                    
+                    <div className="relative w-full">
+                      <div className="absolute inset-0 flex items-center">
+                        <Separator className="w-full" />
+                      </div>
+                      <div className="relative flex justify-center">
+                        <span className="bg-background px-2 text-xs text-muted-foreground">
+                          OR CONTINUE WITH
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <Button 
+                      type="button" 
+                      variant="outline" 
+                      className="w-full" 
+                      onClick={handleGoogleSignIn}
+                      disabled={isLoading}
+                    >
+                      <LucideLogIn className="mr-2 h-4 w-4" />
+                      Sign up with Google
                     </Button>
                   </CardFooter>
                 </form>
